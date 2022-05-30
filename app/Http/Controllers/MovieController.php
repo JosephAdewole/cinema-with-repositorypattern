@@ -26,8 +26,7 @@ class MovieController extends Controller
     public function store(Request $request): JsonResponse 
     {
         $movieDetails = $request->only([
-            'client',
-            'details'
+            //
         ]);
 
         return response()->json(
