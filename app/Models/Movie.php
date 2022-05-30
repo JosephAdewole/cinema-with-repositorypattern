@@ -11,6 +11,8 @@ class Movie extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function cinemas()
     {
         return $this->belongsToMany(Cinema::class);

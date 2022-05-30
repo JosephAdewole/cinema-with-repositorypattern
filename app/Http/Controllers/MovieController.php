@@ -26,9 +26,10 @@ class MovieController extends Controller
     public function store(Request $request): JsonResponse 
     {
         $movieDetails = $request->only([
-            //
+            'name',
         ]);
 
+        
         return response()->json(
             [
                 'data' => $this->movieRepository->createMovie($movieDetails)
@@ -65,4 +66,6 @@ class MovieController extends Controller
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }
+
+    
 }

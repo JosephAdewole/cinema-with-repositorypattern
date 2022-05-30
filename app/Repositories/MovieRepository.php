@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\MovieRepositoryInterface;
 use App\Models\Movie;
+use App\Models\Cinema;
 
 class MovieRepository implements MovieRepositoryInterface 
 {
@@ -24,7 +25,11 @@ class MovieRepository implements MovieRepositoryInterface
 
     public function createMovie(array $MovieDetails) 
     {
-        return Movie::create($MovieDetails);
+        $response = Movie::create($MovieDetails);
+        $cinemas = Cinema::all();
+        $response->cinemas()->attach($cinemas);
+
+        return $response;
     }
 
     public function updateMovie($MovieId, array $newDetails) 
