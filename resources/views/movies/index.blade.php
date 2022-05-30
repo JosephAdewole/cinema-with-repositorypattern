@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('View All Movies') }}
         </h2>
     </x-slot>
 
@@ -9,47 +9,20 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
+                    <form data-action="{{ url('api/movies') }}" method="post" id= 'view-form'>
+                        @csrf
+                        <label for="">Enter you movie name here</label>
+                        <input type="text" class="form-control" name="name" required>
+                        <input type="submit" class="btn btn-dark" value="Create">
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container">
-        <div id='movies' class="row">
-
-        </div>
-    </div>
-    
-    
-    
-
-
     <script>
         $(document).ready(function(){
-            $.ajax({
-                url: 'api/movies',
-                method: 'GET',
-                dataType: 'JSON',                
-                success:function(response)
-                {
-                    console.log(response.data)
 
-                    var len = response.data.length;
-                    for(var i=0; i<len; i++){
-                        var id = response.data[i].id;
-                        var name = response.data[i].name;
-                        var created_at = response.data[i].created_at;
-
-                        var tr_str = "<div class='col border border-primary '> " +
-                            "<p align='center'>" + name + "</p>" +
-                            "<p align='center'>" + created_at + "</p> </div>";
-                        $("#movies").append(tr_str);
-                    }
-                },
-                error: function(response) {
-                }
-            });
         var form = '#view-form';
 
         $(form).on('submit', function(event){
