@@ -2,63 +2,68 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Movie;
+use App\Interfaces\MovieRepositoryInterface;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
-class MovieController extends Controller
+class MovieController extends Controller 
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    private MovieRepositoryInterface $movieRepository;
+
+    public function __construct(MovieRepositoryInterface $movieRepository) 
     {
-        //
+        $this->movieRepository = $movieRepository;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function index(): JsonResponse 
     {
-        //
+        return response()->json([
+            'data' => $this->movieRepository->getAllMovies()
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Movie  $movie
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Movie $movie)
+    public function store(Request $request): JsonResponse 
     {
-        //
+        $movieDetails = $request->only([
+            'client',
+            'details'
+        ]);
+
+        return response()->json(
+            [
+                'data' => $this->movieRepository->createMovie($movieDetails)
+            ],
+            Response::HTTP_CREATED
+        );
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Movie  $movie
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Movie $movie)
+    public function show(Request $request): JsonResponse 
     {
-        //
+        $movieId = $request->route('id');
+
+        return response()->json([
+            'data' => $this->movieRepository->getMovieById($movieId)
+        ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Movie  $movie
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Movie $movie)
+    public function update(Request $request): JsonResponse 
     {
-        //
+        $movieId = $request->route('id');
+        $movieDetails = $request->only([
+            //
+        ]);
+
+        return response()->json([
+            'data' => $this->movieRepository->updateMovie($movieId, $movieDetails)
+        ]);
+    }
+
+    public function destroy(Request $request): JsonResponse 
+    {
+        $movieId = $request->route('id');
+        $this->movieRepository->deleteMovie($movieId);
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }
