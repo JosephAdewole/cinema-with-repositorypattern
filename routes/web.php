@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MovieController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +23,12 @@ Route::get('/', function () {
 Route::get('/movies', function () {
     return view('movies/index');
 });
+
+Route::get('movies/{id}', [MovieController::class, 'showpage']);
+
+// Route::get('/movies{id}', function () {
+//     return view('movies/single', ['id' => $id]);
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');

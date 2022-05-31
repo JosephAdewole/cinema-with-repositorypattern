@@ -10,7 +10,7 @@ class MovieRepository implements MovieRepositoryInterface
 {
     public function getAllMovies() 
     {
-        return Movie::all();
+        return Movie::with('cinemas')->get();
     }
 
     public function getMovieById($MovieId) 

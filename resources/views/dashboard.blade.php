@@ -34,17 +34,28 @@
                 success:function(response)
                 {
                     console.log(response.data)
-
+                    res = response.data
                     var len = response.data.length;
                     for(var i=0; i<len; i++){
+                        console.log(res[i].cinemas)
                         var id = response.data[i].id;
                         var name = response.data[i].name;
                         var created_at = response.data[i].created_at;
 
-                        var tr_str = "<div class='col border border-primary '> " +
+                        var tr_str = "<div class='row border border-primary' id = 'singlemovie'> " +
                             "<p align='center'>" + name + "</p>" +
-                            "<p align='center'>" + created_at + "</p> </div>";
+                            "<a style='text-align:center' href='movies/" + id + "'> <span>View</span></a> </div>";
+
                         $("#movies").append(tr_str);
+
+                        var cinemas_length = response.data[i].cinemas.length;
+                        for (var j = 0; j < cinemas_length; j++) {
+                            const thiscinemas = response.data[i].cinemas[j];
+                            var cn_str = "<div class='row border border-primary' id = 'singlemovie'> " +
+                            "<p align='center'>" + thiscinemas.name + "</p></div>";
+                            $("#movies").append(cn_str);
+
+                        }
                     }
                 },
                 error: function(response) {
