@@ -22,11 +22,11 @@ Route::get('/', function () {
 
 Route::get('/movies', function () {
     return view('movies/index');
-});
+})->name('movies/create');
 
 Route::get('/schedules/create', function () {
     return view('schedules/create');
-});
+})->name('schedules/create');
 
 Route::get('movies/{id}', [MovieController::class, 'showpage']);
 
@@ -35,9 +35,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 
-Route::get('/movies/create', function () {
-    return view('movies/create');
-})->middleware(['auth'])->name('movies/create');
+// Route::get('/movies/create', function () {
+//     return view('movies/create');
+// })->middleware(['auth'])->name('movies/create');
 
 
 require __DIR__.'/auth.php';

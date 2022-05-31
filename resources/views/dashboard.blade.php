@@ -5,19 +5,15 @@
         </h2>
     </x-slot>
 
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
+                    <div id='movies' class="row border">
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div id='movies' class="row">
-
         </div>
     </div>
     
@@ -37,24 +33,28 @@
                     res = response.data
                     var len = response.data.length;
                     for(var i=0; i<len; i++){
-                        console.log(res[i].cinemas)
+                        // console.log(res[i].cinemas)
                         var id = response.data[i].id;
                         var name = response.data[i].name;
                         var created_at = response.data[i].created_at;
 
-                        var tr_str = "<div class='row card border border-primary' id = 'singlemovie'> " +
-                            "<p align='center'>" + name + "</p>" +
-                            "<a style='text-align:center' href='movies/" + id + "'> <span>View</span></a> </div>";
+                        var tr_str = "<div class='row' id = 'singlemovie'> " +
+                            "<h3 align='center'>Movie: " + name + "</h3></div>";
 
                         $("#movies").append(tr_str);
+                        var extra_text = "<h4 align='center'>Below are Showtimes</h4>";
+                        $("#movies").append(extra_text);
 
                         var cinemas_length = response.data[i].cinemas.length;
                         for (var j = 0; j < cinemas_length; j++) {
                             const thiscinemas = response.data[i].cinemas[j];
-                            var cn_str = "<br><br><div class='row border-left border-primary' id = 'singlemovie'> " +
+                            var cn_str = "<br><br><div class='row' id = 'singlemovie'> " +
                             "<p align='center'>" + thiscinemas.name + "</p></div>";
                             $("#movies").append(cn_str);
-
+                            var schedule = response.data[i].schedules[j].showtime;
+                            var schedule_str = "<br><br><div class='row' id = 'schedule'> " +
+                            "<p align='center'>" + schedule + "</p></div>";
+                            $("#movies").append(schedule_str);
                         }
                     }
                 },

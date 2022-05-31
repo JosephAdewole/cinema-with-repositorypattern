@@ -14,10 +14,14 @@ class CreateCinemaMovieSchedule extends Migration
     public function up()
     {
         Schema::create('cinema_movie_schedule', function (Blueprint $table) {
-            $table->id();
-            $table->integer('cinema_id')->unsigned();
-            $table->integer('movie_id')->unsigned();
-            $table->integer('schedule_id')->unsigned();
+            // $table->id();
+            // $table->integer('cinema_id')->unsigned();
+            // $table->integer('movie_id')->unsigned();
+            // $table->integer('schedule_id')->unsigned();
+            $table->foreignId('cinema_id')->constrained();
+            $table->foreignId('movie_id')->constrained();
+            $table->foreignId('schedule_id')->constrained();
+            $table->primary(['cinema_id', 'movie_id', 'schedule_id']);
             $table->timestamps();
         });
     }
