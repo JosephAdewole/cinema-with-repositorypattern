@@ -29,5 +29,11 @@ Route::put('movies/{id}', [MovieController::class, 'update']);
 Route::delete('movies/{id}', [MovieController::class, 'delete']);
 
 Route::get('cinemas', [CinemaController::class, 'index']);
+Route::get('cinemas/{id}', [CinemaController::class, 'show']);
+Route::post('cinemas', [CinemaController::class, 'store']);
+Route::put('cinemas/{id}', [CinemaController::class, 'update']);
+Route::delete('cinemas/{id}', [CinemaController::class, 'delete']);
+
+
 
 Route::post('schedules', [ScheduleController::class, 'store']);

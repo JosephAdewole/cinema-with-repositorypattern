@@ -11,6 +11,7 @@ use App\Models\Schedule;
 class Cinema extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 
     public function movies()
     {

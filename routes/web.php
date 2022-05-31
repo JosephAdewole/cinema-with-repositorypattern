@@ -24,6 +24,10 @@ Route::get('/movies', function () {
     return view('movies/index');
 })->name('movies/create');
 
+Route::get('/cinemas', function () {
+    return view('cinemas/create');
+})->name('cinemas/create');
+
 Route::get('/schedules/create', function () {
     return view('schedules/create');
 })->name('schedules/create');

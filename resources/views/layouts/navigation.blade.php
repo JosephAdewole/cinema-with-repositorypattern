@@ -13,13 +13,16 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Browse Movies and Showtimes') }}
                     </x-nav-link>
                     <x-nav-link :href="route('movies/create')" :active="request()->routeIs('movies/create')">
                         {{ __('Create Movie') }}
                     </x-nav-link>
                     <x-nav-link :href="route('schedules/create')" :active="request()->routeIs('schedules/create')">
                         {{ __('Create Schedule') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('cinemas/create')" :active="request()->routeIs('cinemas/create')">
+                        {{ __('Create Cinema') }}
                     </x-nav-link>
                     
                 </div>
@@ -71,12 +74,17 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('Browse Movies and Showtimes') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('movies/create')" :active="request()->routeIs('movies/create')">
                 {{ __('Create Movie') }}
             </x-responsive-nav-link>
-            
+            <x-nav-link :href="route('schedules/create')" :active="request()->routeIs('schedules/create')">
+                {{ __('Create Schedule') }}
+            </x-nav-link>
+            <x-responsive-nav-link :href="route('cinemas/create')" :active="request()->routeIs('cinemas/create')">
+                {{ __('Create Cinema') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
