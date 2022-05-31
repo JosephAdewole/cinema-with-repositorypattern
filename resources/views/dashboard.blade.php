@@ -51,7 +51,7 @@
                         var cinemas_length = response.data[i].cinemas.length;
                         for (var j = 0; j < cinemas_length; j++) {
                             const thiscinemas = response.data[i].cinemas[j];
-                            var cn_str = "<div class='row border border-primary' id = 'singlemovie'> " +
+                            var cn_str = "<br><br><div class='row border-left border-primary' id = 'singlemovie'> " +
                             "<p align='center'>" + thiscinemas.name + "</p></div>";
                             $("#movies").append(cn_str);
 
