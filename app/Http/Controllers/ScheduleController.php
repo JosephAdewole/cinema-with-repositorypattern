@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Interfaces\CinemaRepositoryInterface;
+use App\Interfaces\ScheduleRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class CinemaController extends Controller 
+class ScheduleController extends Controller 
 {
-    private CinemaRepositoryInterface $cinemaRepository;
+    private ScheduleRepositoryInterface $cinemaRepository;
 
-    public function __construct(CinemaRepositoryInterface $cinemaRepository) 
+    public function __construct(ScheduleRepositoryInterface $cinemaRepository) 
     {
         $this->cinemaRepository = $cinemaRepository;
     }
@@ -19,7 +19,7 @@ class CinemaController extends Controller
     public function index(): JsonResponse 
     {
         return response()->json([
-            'data' => $this->cinemaRepository->getAllCinemas()
+            'data' => $this->cinemaRepository->getAllSchedules()
         ]);
     }
 
@@ -32,7 +32,7 @@ class CinemaController extends Controller
         
         return response()->json(
             [
-                'data' => $this->cinemaRepository->createCinema($cinemaDetails)
+                'data' => $this->cinemaRepository->createSchedule($cinemaDetails)
             ],
             Response::HTTP_CREATED
         );
@@ -43,7 +43,7 @@ class CinemaController extends Controller
         $cinemaId = $request->route('id');
 
         return response()->json([
-            'data' => $this->cinemaRepository->getCinemaById($cinemaId)
+            'data' => $this->cinemaRepository->getScheduleById($cinemaId)
         ]);
     }
 
@@ -55,14 +55,14 @@ class CinemaController extends Controller
         ]);
 
         return response()->json([
-            'data' => $this->cinemaRepository->updateCinema($cinemaId, $cinemaDetails)
+            'data' => $this->cinemaRepository->updateSchedule($cinemaId, $cinemaDetails)
         ]);
     }
 
     public function destroy(Request $request): JsonResponse 
     {
         $cinemaId = $request->route('id');
-        $this->cinemaRepository->deleteCinema($cinemaId);
+        $this->cinemaRepository->deleteSchedule($cinemaId);
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }

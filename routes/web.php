@@ -24,11 +24,11 @@ Route::get('/movies', function () {
     return view('movies/index');
 });
 
-Route::get('movies/{id}', [MovieController::class, 'showpage']);
+Route::get('/schedules/create', function () {
+    return view('schedules/create');
+});
 
-// Route::get('/movies{id}', function () {
-//     return view('movies/single', ['id' => $id]);
-// });
+Route::get('movies/{id}', [MovieController::class, 'showpage']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

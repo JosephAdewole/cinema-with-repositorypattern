@@ -17,7 +17,7 @@ class CreateCinemaMovieSchedule extends Migration
             $table->id();
             $table->integer('cinema_id')->unsigned();
             $table->integer('movie_id')->unsigned();
-            $table->integer('schedule_tid')->unsigned();
+            $table->integer('schedule_id')->unsigned();
             $table->timestamps();
         });
     }

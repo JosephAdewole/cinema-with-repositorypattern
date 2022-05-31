@@ -42,7 +42,7 @@
                         var name = response.data[i].name;
                         var created_at = response.data[i].created_at;
 
-                        var tr_str = "<div class='row border border-primary' id = 'singlemovie'> " +
+                        var tr_str = "<div class='row card border border-primary' id = 'singlemovie'> " +
                             "<p align='center'>" + name + "</p>" +
                             "<a style='text-align:center' href='movies/" + id + "'> <span>View</span></a> </div>";
 
