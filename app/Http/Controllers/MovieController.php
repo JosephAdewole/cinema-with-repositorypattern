@@ -67,12 +67,5 @@ class MovieController extends Controller
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 
-
-    public function showpage(Request $request)
-    {
-        $movieId = $request->route('id');
-
-        return view('movies.single', compact('movieId'));
-    }
     
 }

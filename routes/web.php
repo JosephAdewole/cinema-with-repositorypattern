@@ -28,16 +28,8 @@ Route::get('/schedules/create', function () {
     return view('schedules/create');
 })->name('schedules/create');
 
-Route::get('movies/{id}', [MovieController::class, 'showpage']);
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
-
-
-// Route::get('/movies/create', function () {
-//     return view('movies/create');
-// })->middleware(['auth'])->name('movies/create');
-
 
 require __DIR__.'/auth.php';

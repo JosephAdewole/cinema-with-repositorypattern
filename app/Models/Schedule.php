@@ -13,15 +13,6 @@ class Schedule extends Model
     use HasFactory;
     protected $fillable = ['showtime'];
 
-
-    // public function movie()
-    // {
-    //     return $this->hasOne(Movie::class);
-    // }
-    // public function cinema()
-    // {
-    //     return $this->hasOne(Cinema::class);
-    // }
     public function cinemas()
     {
         return $this->belongsToMany(Cinema::class, 'cinema_movie_schedule');

@@ -30,5 +30,4 @@ Route::delete('movies/{id}', [MovieController::class, 'delete']);
 
 Route::get('cinemas', [CinemaController::class, 'index']);
 
-
 Route::post('schedules', [ScheduleController::class, 'store']);

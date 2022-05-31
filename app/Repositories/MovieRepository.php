@@ -11,28 +11,7 @@ class MovieRepository implements MovieRepositoryInterface
 {
     public function getAllMovies() 
     {
-        // return Movie::with('cinemas')->get();
-
         $movies = Movie::with(['cinemas','schedules'])->get();
-        
-        // foreach($movies as $movie){
-        //     $schedules = Schedule::where('movie_id', $movie->id )->get();
-        //     $schedulelist = [];
-        //     foreach($schedules as $schedule){
-        //         // array_push($schedulelist, $schedule->showtime => $schedule->showtime);
-
-        //         $cinemas = Cinema::all();
-        //         foreach ($cinemas as $cinema) {
-        //             $cinema = Cinema::where('id',$schedule->cinema_id)->value('name');
-        //             // echo($cinema);
-        //             // array_push($schedulelist[$cinema], $schedule->showtime);
-        //             $schedulelist[$cinema] = $schedule->showtime;
-        //         }
-                
-        //     }
-        //     $movie->schedules = $schedulelist;
-        // }
-
         return $movies;
     }
 
@@ -49,9 +28,6 @@ class MovieRepository implements MovieRepositoryInterface
     public function createMovie(array $MovieDetails) 
     {
         $response = Movie::create($MovieDetails);
-        // $cinemas = Cinema::all();
-        // $response->cinemas()->attach($cinemas);
-
         return $response;
     }
 
